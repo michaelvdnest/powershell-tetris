@@ -1,8 +1,4 @@
-﻿#$DebugPreference = 'Inquire'
-$DebugPreference = 'SilentlyContinue'
-$debug = ($DebugPreference -ne 'SilentlyContinue') 
-
-$screenWidth = 80
+﻿$screenWidth = 80
 $screenHeight = 30
 $tetrominos = @()
 $fieldWidth = 12
@@ -41,7 +37,6 @@ function Rotate($x, $y, $r) {
     $i
 }
 
-
 function DoesPieceFit($tetromino, $rotation, $posX, $posY) {
     
      #All Field cells >0 are occupied
@@ -77,7 +72,7 @@ function DoesPieceFit($tetromino, $rotation, $posX, $posY) {
     $pshost = Get-Host
     $isConsole = ($pshost.Name -eq 'ConsoleHost') 
 
-    if (-not $isConsole-and -not $debug) {
+    if (-not $isConsole) {
         Start-Process powershell $PSCommandPath
     } else {
         # Create screen
@@ -148,11 +143,6 @@ function DoesPieceFit($tetromino, $rotation, $posX, $posY) {
                       "...." +
                       "...."
         
-        #$tetrominos+= "...X" +
-        #              "...X" +
-        #              "...X" +
-        #              "XXXX"
-
         # Game logic
         $currentPiece = 2 #(Get-Random -Maximum ($tetrominos.Length-1))
         $currentRotation = 0
@@ -349,7 +339,3 @@ function DoesPieceFit($tetromino, $rotation, $posX, $posY) {
         if ($gameOver) { Write-Host "Game over!" }
         Read-Host 
     }
-
-
-
-    
